@@ -16,32 +16,37 @@ namespace SOAPVelib
             int res = 0;
 
             string data = GetDataFromServer(city);
-            JArray stationArray = JArray.Parse(data);
-
-            for (int i = 0; i < stationArray.Count(); i++)
+            if (data != "-1")
             {
-                JObject item = (JObject)stationArray[i];
-                if (((String)item["name"]).ToLower().Contains(station.ToLower()))
+                JArray stationArray = JArray.Parse(data);
+
+                for (int i = 0; i < stationArray.Count(); i++)
                 {
-                    res = (int)item["available_bikes"];
-                    return res;
+                    JObject item = (JObject)stationArray[i];
+                    if (((string)item["name"]).ToLower().Contains(station.ToLower()))
+                    {
+                        res = (int)item["available_bikes"];
+                        return res;
+                    }
                 }
-            }
+            }  
             return -1;
         }
 
         public IList<string> GetStations(string city)
         {
-            string data = GetDataFromServer(city);
-            JArray stationArray = JArray.Parse(data);
             IList<string> stationList = new List<string>();
-
-            for (int i = 0; i < stationArray.Count() ; i++)
+            string data = GetDataFromServer(city);
+            if(data != "-1")
             {
-                JObject item = (JObject) stationArray[i];
-                stationList.Add((String)item["name"]);
+                JArray stationArray = JArray.Parse(data);
+                for (int i = 0; i < stationArray.Count(); i++)
+                {
+                    JObject item = (JObject)stationArray[i];
+                    stationList.Add((String)item["name"]);
+                }
             }
-
+            
             return stationList;
         }
 
@@ -55,16 +60,24 @@ namespace SOAPVelib
             //
             request.Credentials = CredentialCache.DefaultCredentials;
             // Get the response.
-            WebResponse response = request.GetResponse();
-            // Display the status.
-            Console.WriteLine(((HttpWebResponse)response).StatusDescription);
-            // Get the stream containing content returned by the server.
-            Stream dataStream = response.GetResponseStream();
-            // Open the stream using a StreamReader for easy access.
-            StreamReader reader = new StreamReader(dataStream);
-            // Read the content.
-            string responseFromServer = reader.ReadToEnd();
-            return responseFromServer;
+            WebResponse response;
+            try
+            {
+                response = request.GetResponse();
+                // Display the status.
+                Console.WriteLine(((HttpWebResponse)response).StatusDescription);
+                // Get the stream containing content returned by the server.
+                Stream dataStream = response.GetResponseStream();
+                // Open the stream using a StreamReader for easy access.
+                StreamReader reader = new StreamReader(dataStream);
+                // Read the content.
+                string responseFromServer = reader.ReadToEnd();
+                return responseFromServer;
+            }
+            catch (Exception e)
+            {
+                return "-1";
+            }           
         }
     }
 }
