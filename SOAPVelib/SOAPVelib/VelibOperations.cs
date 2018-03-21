@@ -11,11 +11,14 @@ namespace SOAPVelib
 {
     public class VelibOperations : IVelibOperations
     {
+        private static string BASE_URI = "https://api.jcdecaux.com/vls/v1/";
+        private static string API_KEY = "&apiKey=54891361888ee7897e3778b99473f96067b77ad7";
+
         public int GetNbAvailableBikes(string city, string station)
         {
             int res = 0;
 
-            string data = GetDataFromServer(city);
+            string data = GetContractDataFromServer(city);
             if (data != "-1")
             {
                 JArray stationArray = JArray.Parse(data);
@@ -33,10 +36,28 @@ namespace SOAPVelib
             return -1;
         }
 
+        public IList<string> GetContracts()
+        {
+            IList<string> contractList = new List<string>();
+            string data = GetContractsFromServer();
+
+            if (data != "-1")
+            {
+                JArray contractArray = JArray.Parse(data);
+
+                for (int i = 0; i < contractArray.Count(); i++)
+                {
+                    JObject item = (JObject)contractArray[i];
+                    contractList.Add((String)item["name"]);
+                }
+            }
+            return contractList;
+        }
+
         public IList<string> GetStations(string city)
         {
             IList<string> stationList = new List<string>();
-            string data = GetDataFromServer(city);
+            string data = GetContractDataFromServer(city);
             if(data != "-1")
             {
                 JArray stationArray = JArray.Parse(data);
@@ -50,12 +71,39 @@ namespace SOAPVelib
             return stationList;
         }
 
-        private string GetDataFromServer(string city)
+        private string GetContractsFromServer()
+        {
+            WebRequest request = WebRequest.Create(BASE_URI + "contracts?" + API_KEY);
+            // If required by the server, set the credentials.
+            //
+            request.Credentials = CredentialCache.DefaultCredentials;
+            // Get the response.
+            WebResponse response;
+            try
+            {
+                response = request.GetResponse();
+                // Display the status.
+                Console.WriteLine(((HttpWebResponse)response).StatusDescription);
+                // Get the stream containing content returned by the server.
+                Stream dataStream = response.GetResponseStream();
+                // Open the stream using a StreamReader for easy access.
+                StreamReader reader = new StreamReader(dataStream);
+                // Read the content.
+                string responseFromServer = reader.ReadToEnd();
+                return responseFromServer;
+            }
+            catch (Exception e)
+            {
+                return "-1";
+            }
+        }
+
+        private string GetContractDataFromServer(string city)
         {
             string cityName = Char.ToUpper(city[0]) + city.Substring(1, city.Length - 1).ToLower();
 
             // Create a request for the URL. 
-            WebRequest request = WebRequest.Create("https://api.jcdecaux.com/vls/v1/stations?contract="+ cityName + "&apiKey=54891361888ee7897e3778b99473f96067b77ad7");
+            WebRequest request = WebRequest.Create( BASE_URI + cityName + API_KEY);
             // If required by the server, set the credentials.
             //
             request.Credentials = CredentialCache.DefaultCredentials;

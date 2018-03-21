@@ -21,6 +21,12 @@ namespace ClientVelib.SOAPVelibReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibOperations/GetStations", ReplyAction="http://tempuri.org/IVelibOperations/GetStationsResponse")]
         System.Threading.Tasks.Task<string[]> GetStationsAsync(string city);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibOperations/GetContracts", ReplyAction="http://tempuri.org/IVelibOperations/GetContractsResponse")]
+        string[] GetContracts();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibOperations/GetContracts", ReplyAction="http://tempuri.org/IVelibOperations/GetContractsResponse")]
+        System.Threading.Tasks.Task<string[]> GetContractsAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibOperations/GetNbAvailableBikes", ReplyAction="http://tempuri.org/IVelibOperations/GetNbAvailableBikesResponse")]
         int GetNbAvailableBikes(string city, string station);
         
@@ -61,6 +67,14 @@ namespace ClientVelib.SOAPVelibReference {
         
         public System.Threading.Tasks.Task<string[]> GetStationsAsync(string city) {
             return base.Channel.GetStationsAsync(city);
+        }
+        
+        public string[] GetContracts() {
+            return base.Channel.GetContracts();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> GetContractsAsync() {
+            return base.Channel.GetContractsAsync();
         }
         
         public int GetNbAvailableBikes(string city, string station) {

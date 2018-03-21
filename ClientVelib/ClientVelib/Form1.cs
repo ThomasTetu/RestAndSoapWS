@@ -22,6 +22,11 @@ namespace ClientVelib
         {
             InitializeComponent();
             client = new VelibOperationsClient();
+            comboBox2.Items.Clear();
+            foreach (var item in Client.GetContracts())
+            {
+                comboBox2.Items.Add(item);
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -32,7 +37,7 @@ namespace ClientVelib
 
         private void button1_Click(object sender, EventArgs e)
         {
-            currentCity = textBox1.Text;
+            currentCity = comboBox2.Text;
 
             if (currentCity != "")
             {

@@ -14,6 +14,9 @@ namespace SOAPVelib
         IList<String> GetStations(String city);
 
         [OperationContract]
+        IList<String> GetContracts();
+
+        [OperationContract]
         int GetNbAvailableBikes(String city,String station);
     }
 }
