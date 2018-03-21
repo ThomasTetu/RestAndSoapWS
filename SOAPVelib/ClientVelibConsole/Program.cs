@@ -21,14 +21,27 @@ namespace ClientVelibConsole
             {
                 Console.Write("Type ? for help\n");
 
-                string input = Console.ReadLine();
-                switch (input)
+                string input = Console.ReadLine().ToLower();
+                string[] arguments = input.Split();
+                switch (arguments[0])
                 {
                     case "?":
                         Console.Write(HELP);
                         break;
                     case "q":
                         System.Environment.Exit(0);
+                        break;
+                    case "city":
+                        foreach(String s in client.GetContracts()){
+                            Console.WriteLine(s);
+                        }
+                        break;
+                    case "station ":
+                        string city = arguments[1];
+                        if(city != null)
+                        {
+
+                        }
                         break;
                     default:
                         break;
