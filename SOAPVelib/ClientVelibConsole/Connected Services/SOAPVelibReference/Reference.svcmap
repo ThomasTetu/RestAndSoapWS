@@ -26,6 +26,7 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="fa0729c5-a068-49cd-9846-c3a249b2f41d" SourceId="1" SourceUrl="http://localhost:8733/SOAPVelib/VelibOperations/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="6e319e1d-9d01-4126-9e52-717b2f748a26" SourceId="1" SourceUrl="http://localhost:8733/SOAPVelib/VelibOperations/mex" />
     <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="36fd8786-a78b-4917-a152-1c74b22020bc" SourceId="1" SourceUrl="http://localhost:8733/SOAPVelib/VelibOperations/mex" />
+    <MetadataFile FileName="SOAPVelib.xsd" MetadataType="Schema" ID="6eca033b-7ed1-4b61-9cb7-57733c8e0a79" SourceId="1" SourceUrl="http://localhost:8733/SOAPVelib/VelibOperations/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

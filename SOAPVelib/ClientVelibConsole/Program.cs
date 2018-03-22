@@ -19,6 +19,8 @@ namespace ClientVelibConsole
             SOAPVelibReference.VelibOperationsClient client = new VelibOperationsClient();
             while (true)
             {
+                string city = null;
+                string station = null;
                 Console.Write("Type ? for help\n");
 
                 string input = Console.ReadLine().ToLower();
@@ -36,14 +38,28 @@ namespace ClientVelibConsole
                             Console.WriteLine(s);
                         }
                         break;
-                    case "station ":
-                        string city = arguments[1];
+                    case "station":
+                        city = arguments[1];
                         if(city != null)
                         {
-
+                            foreach (String s in client.GetStations(city))
+                            {
+                                Console.WriteLine(s);
+                            }
+                        }
+                        break;
+                    case "bike":
+                        city = arguments[1];
+                        station = arguments[2];
+                        if (city != null && station != null)
+                        {
+                            Station stationObject = client.GetStationData(city, station);
+                            Console.WriteLine(stationObject.name);
+                            Console.WriteLine("Nombre de vélos disponibles : " + stationObject.availableBikes);
                         }
                         break;
                     default:
+                        Console.WriteLine("Mauvaise entrée");
                         break;
                 }
             }         

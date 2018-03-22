@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +15,9 @@ namespace SOAPVelib
         private static string BASE_URI = "https://api.jcdecaux.com/vls/v1/";
         private static string API_KEY = "&apiKey=54891361888ee7897e3778b99473f96067b77ad7";
 
-        public int GetNbAvailableBikes(string city, string station)
+        public Station GetStationData(string city, string station)
         {
-            int res = 0;
+            Station stationObject = new Station();
 
             string data = GetContractDataFromServer(city);
             if (data != "-1")
@@ -28,12 +29,15 @@ namespace SOAPVelib
                     JObject item = (JObject)stationArray[i];
                     if (((string)item["name"]).ToLower().Contains(station.ToLower()))
                     {
-                        res = (int)item["available_bikes"];
-                        return res;
+                        stationObject.city = (string)item["contract_name"];
+                        stationObject.name = (string)item["name"];
+                        stationObject.address = (string)item["address"];
+                        stationObject.availableBikes = (int)item["available_bikes"];
                     }
+                    return stationObject;
                 }
             }  
-            return -1;
+            return null;
         }
 
         public IList<string> GetContracts()
@@ -103,7 +107,7 @@ namespace SOAPVelib
             string cityName = Char.ToUpper(city[0]) + city.Substring(1, city.Length - 1).ToLower();
 
             // Create a request for the URL. 
-            WebRequest request = WebRequest.Create( BASE_URI + cityName + API_KEY);
+            WebRequest request = WebRequest.Create( BASE_URI + "stations?contract=" + cityName + API_KEY);
             // If required by the server, set the credentials.
             //
             request.Credentials = CredentialCache.DefaultCredentials;

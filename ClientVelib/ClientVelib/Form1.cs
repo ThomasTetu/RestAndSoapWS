@@ -31,8 +31,16 @@ namespace ClientVelib
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int nbBikes = client.GetNbAvailableBikes(currentCity, (string)comboBox1.SelectedItem);
-            label2.Text = nbBikes.ToString();
+            Station station = client.GetStationData(currentCity,comboBox1.SelectedText);
+            if (station != null)
+            {
+                int nbBikes = station.availableBikes;
+                label2.Text = nbBikes.ToString();
+            }
+            else
+            {
+                label2.Text = null;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

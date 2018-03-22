@@ -3,7 +3,6 @@ D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\bin\Debug\SOAPVeli
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\bin\Debug\SOAPVelib.pdb
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\bin\Debug\Newtonsoft.Json.dll
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\bin\Debug\Newtonsoft.Json.xml
-D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.csprojResolveAssemblyReference.cache
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.csproj.CoreCompileInputs.cache
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.dll
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.pdb

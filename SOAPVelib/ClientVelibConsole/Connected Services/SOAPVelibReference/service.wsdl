@@ -5,6 +5,7 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/SOAPVelib" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IVelibOperations_GetStations_InputMessage">
@@ -19,11 +20,11 @@
   <wsdl:message name="IVelibOperations_GetContracts_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetContractsResponse" />
   </wsdl:message>
-  <wsdl:message name="IVelibOperations_GetNbAvailableBikes_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetNbAvailableBikes" />
+  <wsdl:message name="IVelibOperations_GetStationData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStationData" />
   </wsdl:message>
-  <wsdl:message name="IVelibOperations_GetNbAvailableBikes_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetNbAvailableBikesResponse" />
+  <wsdl:message name="IVelibOperations_GetStationData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStationDataResponse" />
   </wsdl:message>
   <wsdl:portType name="IVelibOperations">
     <wsdl:operation name="GetStations">
@@ -34,9 +35,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IVelibOperations/GetContracts" message="tns:IVelibOperations_GetContracts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IVelibOperations/GetContractsResponse" message="tns:IVelibOperations_GetContracts_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetNbAvailableBikes">
-      <wsdl:input wsaw:Action="http://tempuri.org/IVelibOperations/GetNbAvailableBikes" message="tns:IVelibOperations_GetNbAvailableBikes_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IVelibOperations/GetNbAvailableBikesResponse" message="tns:IVelibOperations_GetNbAvailableBikes_OutputMessage" />
+    <wsdl:operation name="GetStationData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVelibOperations/GetStationData" message="tns:IVelibOperations_GetStationData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVelibOperations/GetStationDataResponse" message="tns:IVelibOperations_GetStationData_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IVelibOperations" type="tns:IVelibOperations">
@@ -59,8 +60,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetNbAvailableBikes">
-      <soap:operation soapAction="http://tempuri.org/IVelibOperations/GetNbAvailableBikes" style="document" />
+    <wsdl:operation name="GetStationData">
+      <soap:operation soapAction="http://tempuri.org/IVelibOperations/GetStationData" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
