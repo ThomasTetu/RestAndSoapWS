@@ -1,5 +1,7 @@
 ﻿using ClientVelib.SOAPVelibReference;
 using GMap.NET.MapProviders;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +32,24 @@ namespace ClientVelib
             }
         }
 
+        private void loadMap(Station station)
+        {
+            map.ShowCenter = false;
+            map.MapProvider = GMapProviders.GoogleMap;
+            map.Position = new GMap.NET.PointLatLng(station.latitude, station.longitude);
+            map.MinZoom = 5;
+            map.MaxZoom = 100;
+            map.Zoom = 10;
+            map.DragButton = MouseButtons.Left;
+            map.MouseWheelZoomEnabled = true;
+            GMapOverlay markers = new GMapOverlay("markers");
+            GMapMarker marker = new GMarkerGoogle(new GMap.NET.PointLatLng(station.latitude, station.longitude),
+                GMap.NET.WindowsForms.Markers.GMarkerGoogleType.red);
+            markers.Markers.Add(marker);
+            map.Overlays.Add(markers);
+
+        }
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Station station = client.GetStationData(currentCity,comboBox1.SelectedText);
@@ -37,13 +57,7 @@ namespace ClientVelib
             {
                 int nbBikes = station.availableBikes;
                 label2.Text = nbBikes.ToString();
-                map.MapProvider = GMapProviders.GoogleMap;
-                map.Position = new GMap.NET.PointLatLng(station.latitude, station.longitude);
-                map.MinZoom = 5;
-                map.MaxZoom = 100;
-                map.Zoom = 10;
-                map.DragButton = MouseButtons.Left;
-                map.MouseWheelZoomEnabled = true;
+                loadMap(station);
             }
             else
             {

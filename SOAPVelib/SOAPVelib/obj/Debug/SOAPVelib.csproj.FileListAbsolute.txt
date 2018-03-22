@@ -7,3 +7,13 @@ D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVeli
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.dll
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.pdb
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.csprojResolveAssemblyReference.cache
+D:\MesDocuments\S8\WebService\RestAndSoapWS\SOAPVelib\SOAPVelib\bin\Debug\SOAPVelib.dll.config
+D:\MesDocuments\S8\WebService\RestAndSoapWS\SOAPVelib\SOAPVelib\bin\Debug\SOAPVelib.dll
+D:\MesDocuments\S8\WebService\RestAndSoapWS\SOAPVelib\SOAPVelib\bin\Debug\SOAPVelib.pdb
+D:\MesDocuments\S8\WebService\RestAndSoapWS\SOAPVelib\SOAPVelib\bin\Debug\Newtonsoft.Json.dll
+D:\MesDocuments\S8\WebService\RestAndSoapWS\SOAPVelib\SOAPVelib\bin\Debug\Newtonsoft.Json.xml
+D:\MesDocuments\S8\WebService\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.csprojResolveAssemblyReference.cache
+D:\MesDocuments\S8\WebService\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.csproj.CoreCompileInputs.cache
+D:\MesDocuments\S8\WebService\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.csproj.CopyComplete
+D:\MesDocuments\S8\WebService\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.dll
+D:\MesDocuments\S8\WebService\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.pdb
