@@ -25,8 +25,16 @@ namespace ClientVelib
         {
             InitializeComponent();
             client = new VelibOperationsClient();
+            initContracts();
+            
+        }
+
+        private async void initContracts()
+        {
             comboBox2.Items.Clear();
-            foreach (var item in Client.GetContracts())
+            Task<string[]> getContracts = Client.GetContractsAsync();
+            string[] contracts = await getContracts;
+            foreach (var item in contracts)
             {
                 comboBox2.Items.Add(item);
             }
@@ -50,9 +58,10 @@ namespace ClientVelib
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private async void updateBikesData()
         {
-            Station station = client.GetStationData(currentCity,comboBox1.SelectedText);
+            Task<Station> getStationData = client.GetStationDataAsync(currentCity, comboBox1.SelectedText);
+            Station station = await getStationData;
             if (station != null)
             {
                 int nbBikes = station.availableBikes;
@@ -65,18 +74,29 @@ namespace ClientVelib
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateBikesData();
+        }
+
+        private async void fillStations()
         {
             currentCity = comboBox2.Text;
 
             if (currentCity != "")
             {
                 comboBox1.Items.Clear();
-                foreach (var item in Client.GetStations(currentCity)) { 
+                Task<string[]> asyncRequest = Client.GetStationsAsync(currentCity);
+                string[] response = await asyncRequest;
+                foreach (var item in response)
+                {
                     comboBox1.Items.Add(item);
                 }
             }
-           
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            fillStations();           
         }
     }
 }

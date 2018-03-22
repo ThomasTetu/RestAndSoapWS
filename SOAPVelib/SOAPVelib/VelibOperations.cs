@@ -15,11 +15,9 @@ namespace SOAPVelib
         private static string BASE_URI = "https://api.jcdecaux.com/vls/v1/";
         private static string API_KEY = "&apiKey=54891361888ee7897e3778b99473f96067b77ad7";
 
-        public Station GetStationData(string city, string station)
+        public Station ParseStationData(string data,string station)
         {
             Station stationObject = new Station();
-
-            string data = GetContractDataFromServer(city);
             if (data != "-1")
             {
                 JArray stationArray = JArray.Parse(data);
@@ -38,15 +36,18 @@ namespace SOAPVelib
                     }
                     return stationObject;
                 }
-            }  
+            }
             return null;
         }
 
-        public IList<string> GetContracts()
+        public Station GetStationData(string city, string station)
+        {
+            return ParseStationData(GetContractDataFromServer(city), station);
+        }
+
+        private IList<string> ParseContracts(string data)
         {
             IList<string> contractList = new List<string>();
-            string data = GetContractsFromServer();
-
             if (data != "-1")
             {
                 JArray contractArray = JArray.Parse(data);
@@ -60,11 +61,15 @@ namespace SOAPVelib
             return contractList;
         }
 
-        public IList<string> GetStations(string city)
+        public IList<string> GetContracts()
+        {
+            return ParseContracts(GetContractsFromServer());           
+        }
+
+        private IList<String> ParseStations(string data)
         {
             IList<string> stationList = new List<string>();
-            string data = GetContractDataFromServer(city);
-            if(data != "-1")
+            if (data != "-1")
             {
                 JArray stationArray = JArray.Parse(data);
                 for (int i = 0; i < stationArray.Count(); i++)
@@ -73,8 +78,13 @@ namespace SOAPVelib
                     stationList.Add((String)item["name"]);
                 }
             }
-            
+
             return stationList;
+        }
+
+        public IList<string> GetStations(string city)
+        {
+            return ParseStations(GetContractDataFromServer(city));
         }
 
         private string GetContractsFromServer()
@@ -102,6 +112,13 @@ namespace SOAPVelib
             {
                 return "-1";
             }
+        }
+
+        private Task<string> GetContractFromServerAsync()
+        {
+            return Task.Run(() => {
+                return GetContractsFromServer();
+            });
         }
 
         private string GetContractDataFromServer(string city)
@@ -132,6 +149,38 @@ namespace SOAPVelib
             {
                 return "-1";
             }           
+        }
+
+        private Task<String> GetContractDataFromServerAsync(String city)
+        {
+            return Task.Run(() =>
+            {
+                return GetContractDataFromServer(city);
+            });
+        }
+
+        public async Task<IList<string>> GetStationsAsync(string city)
+        {
+            Task<string> getStationData = GetContractDataFromServerAsync(city);
+            string data = await getStationData;
+
+            return ParseStations(data);
+        }
+
+        public async Task<IList<string>> GetContractsAsync()
+        {
+            Task<string> getContracts = GetContractFromServerAsync();
+            string contracts = await getContracts;
+
+            return ParseContracts(contracts);
+        }
+
+        public async Task<Station> GetStationDataAsync(string city, string station)
+        {
+            Task<string> getStationData = GetContractDataFromServerAsync(city);
+            string data = await getStationData;
+
+            return ParseStationData(data, station);
         }
     }
 }
