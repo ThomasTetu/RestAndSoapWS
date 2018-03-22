@@ -21,5 +21,11 @@ namespace SOAPVelib
 
         [DataMember]
         internal int availableBikes { get; set; }
+
+        [DataMember]
+        internal double latitude { get; set; }
+
+        [DataMember]
+        internal double longitude { get; set; }
     }
 }

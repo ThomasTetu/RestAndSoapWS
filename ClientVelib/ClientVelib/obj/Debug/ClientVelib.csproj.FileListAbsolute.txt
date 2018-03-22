@@ -8,3 +8,17 @@ D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\Clie
 D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\ClientVelib.csproj.CoreCompileInputs.cache
 D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\ClientVelib.exe
 D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\ClientVelib.pdb
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\EntityFramework.dll
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\EntityFramework.SqlServer.dll
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\GMap.NET.Core.dll
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\GMap.NET.WindowsForms.dll
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\GMap.NET.WindowsPresentation.dll
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\Newtonsoft.Json.dll
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\System.Data.SQLite.dll
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\System.Data.SQLite.EF6.dll
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\System.Data.SQLite.Linq.dll
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\EntityFramework.xml
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\EntityFramework.SqlServer.xml
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\Newtonsoft.Json.xml
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\System.Data.SQLite.xml
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\System.Data.SQLite.dll.config

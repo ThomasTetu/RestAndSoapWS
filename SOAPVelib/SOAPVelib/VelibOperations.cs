@@ -33,6 +33,8 @@ namespace SOAPVelib
                         stationObject.name = (string)item["name"];
                         stationObject.address = (string)item["address"];
                         stationObject.availableBikes = (int)item["available_bikes"];
+                        stationObject.latitude = (double)(item["position"]["lat"]);
+                        stationObject.longitude = (double)(item["position"]["lng"]);
                     }
                     return stationObject;
                 }

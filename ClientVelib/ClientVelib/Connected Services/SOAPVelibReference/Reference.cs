@@ -32,6 +32,12 @@ namespace ClientVelib.SOAPVelibReference {
         private string cityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double latitudeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double longitudeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string nameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -79,6 +85,32 @@ namespace ClientVelib.SOAPVelibReference {
                 if ((object.ReferenceEquals(this.cityField, value) != true)) {
                     this.cityField = value;
                     this.RaisePropertyChanged("city");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double latitude {
+            get {
+                return this.latitudeField;
+            }
+            set {
+                if ((this.latitudeField.Equals(value) != true)) {
+                    this.latitudeField = value;
+                    this.RaisePropertyChanged("latitude");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double longitude {
+            get {
+                return this.longitudeField;
+            }
+            set {
+                if ((this.longitudeField.Equals(value) != true)) {
+                    this.longitudeField = value;
+                    this.RaisePropertyChanged("longitude");
                 }
             }
         }

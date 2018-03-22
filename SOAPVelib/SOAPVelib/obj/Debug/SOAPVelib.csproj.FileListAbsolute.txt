@@ -6,3 +6,4 @@ D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\bin\Debug\Newtonso
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.csproj.CoreCompileInputs.cache
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.dll
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.pdb
+D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\SOAPVelib\obj\Debug\SOAPVelib.csprojResolveAssemblyReference.cache

@@ -1,4 +1,5 @@
 ﻿using ClientVelib.SOAPVelibReference;
+using GMap.NET.MapProviders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,6 +37,13 @@ namespace ClientVelib
             {
                 int nbBikes = station.availableBikes;
                 label2.Text = nbBikes.ToString();
+                map.MapProvider = GMapProviders.GoogleMap;
+                map.Position = new GMap.NET.PointLatLng(station.latitude, station.longitude);
+                map.MinZoom = 5;
+                map.MaxZoom = 100;
+                map.Zoom = 10;
+                map.DragButton = MouseButtons.Left;
+                map.MouseWheelZoomEnabled = true;
             }
             else
             {
