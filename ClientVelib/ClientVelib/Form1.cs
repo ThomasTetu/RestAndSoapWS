@@ -26,7 +26,8 @@ namespace ClientVelib
             InitializeComponent();
             client = new VelibOperationsClient();
             initContracts();
-            
+            label6.Text = null;
+
         }
 
         private async void initContracts()
@@ -53,6 +54,8 @@ namespace ClientVelib
             GMapOverlay markers = new GMapOverlay("markers");
             GMapMarker marker = new GMarkerGoogle(new GMap.NET.PointLatLng(station.latitude, station.longitude),
                 GMap.NET.WindowsForms.Markers.GMarkerGoogleType.red);
+            markers.Markers.Clear();
+            map.Overlays.Clear();
             markers.Markers.Add(marker);
             map.Overlays.Add(markers);
 
@@ -60,17 +63,17 @@ namespace ClientVelib
 
         private async void updateBikesData()
         {
-            Task<Station> getStationData = client.GetStationDataAsync(currentCity, comboBox1.SelectedText);
+            Task<Station> getStationData = client.GetStationDataAsync(currentCity,(string) comboBox1.SelectedItem);
             Station station = await getStationData;
             if (station != null)
             {
                 int nbBikes = station.availableBikes;
-                label2.Text = nbBikes.ToString();
+                label6.Text = nbBikes.ToString();
                 loadMap(station);
             }
             else
             {
-                label2.Text = null;
+                label6.Text = null;
             }
         }
 
@@ -96,7 +99,7 @@ namespace ClientVelib
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            fillStations();           
+            fillStations();
         }
     }
 }

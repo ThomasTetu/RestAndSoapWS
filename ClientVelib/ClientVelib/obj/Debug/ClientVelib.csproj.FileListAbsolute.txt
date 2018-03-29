@@ -2,7 +2,6 @@ D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\Clie
 D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\ClientVelib.exe
 D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\bin\Debug\ClientVelib.pdb
 D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\ClientVelib.csprojResolveAssemblyReference.cache
-D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\ClientVelib.Form1.resources
 D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\ClientVelib.Properties.Resources.resources
 D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\ClientVelib.csproj.GenerateResource.Cache
 D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\ClientVelib.csproj.CoreCompileInputs.cache
@@ -47,3 +46,4 @@ D:\MesDocuments\S8\WebService\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\Cl
 D:\MesDocuments\S8\WebService\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\ClientVelib.csproj.CopyComplete
 D:\MesDocuments\S8\WebService\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\ClientVelib.exe
 D:\MesDocuments\S8\WebService\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\ClientVelib.pdb
+D:\Documents\S8\WebServices\RestAndSoapWS\ClientVelib\ClientVelib\obj\Debug\ClientVelib.Form1.resources

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -14,6 +15,8 @@ namespace SOAPVelib
     {
         private static string BASE_URI = "https://api.jcdecaux.com/vls/v1/";
         private static string API_KEY = "&apiKey=54891361888ee7897e3778b99473f96067b77ad7";
+        private static StationCache cache = new StationCache();
+        private int timeOut = 5;
 
         public Station ParseStationData(string data,string station)
         {
@@ -33,8 +36,11 @@ namespace SOAPVelib
                         stationObject.availableBikes = (int)item["available_bikes"];
                         stationObject.latitude = (double)(item["position"]["lat"]);
                         stationObject.longitude = (double)(item["position"]["lng"]);
+                        
+                        return stationObject;
                     }
-                    return stationObject;
+                    
+                
                 }
             }
             return null;
@@ -42,7 +48,25 @@ namespace SOAPVelib
 
         public Station GetStationData(string city, string station)
         {
-            return ParseStationData(GetContractDataFromServer(city), station);
+            foreach(DataRow row in cache.GetRows())
+            {
+                if (row["Name"].ToString().Equals(city) && (station != "" && row["StationName"].ToString().Contains(station))){
+                    if (((DateTime) row["AddedDate"]).AddMinutes(timeOut).CompareTo(DateTime.Now) >= 0)
+                    {
+                        return (Station)row["Station"];
+                    }
+                    else
+                    {
+                        row.Delete();
+                        break;
+                    }
+                }
+            }
+
+            Station stationObject = ParseStationData(GetContractDataFromServer(city), station);
+            cache.AddRow(stationObject);
+
+            return stationObject;
         }
 
         private IList<string> ParseContracts(string data)
