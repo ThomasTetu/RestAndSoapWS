@@ -47,6 +47,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IVelibOperationsEvents.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="IService1.cs" />
     <Compile Include="IVelibOperations.cs" />

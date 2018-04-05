@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,7 +17,10 @@ namespace ClientVelibConsole
                             
         public static void Main(string[] args)
         {
-            SOAPVelibReference.VelibOperationsClient client = new VelibOperationsClient();
+            SOAPVelibReference.IVelibOperationsCallback objsink = new VelibServiceCallbackSink();
+            InstanceContext iCntxt = new InstanceContext(objsink);
+
+            SOAPVelibReference.VelibOperationsClient client = new SOAPVelibReference.VelibOperationsClient(iCntxt);
             while (true)
             {
                 string city = null;
@@ -53,9 +57,9 @@ namespace ClientVelibConsole
                         station = arguments[2];
                         if (city != null && station != null)
                         {
-                            Station stationObject = client.GetStationData(city, station);
-                            Console.WriteLine(stationObject.name);
-                            Console.WriteLine("Nombre de vélos disponibles : " + stationObject.availableBikes);
+                            client.SubscribeGetStationDataEvent();
+                            client.SubscribeGetStationDataEventFinished();
+                            client.GetStationData(city, station);
                         }
                         break;
                     default:

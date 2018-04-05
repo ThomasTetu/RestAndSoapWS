@@ -4,3 +4,4 @@ D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\ClientVelibConsole\bin\Debug
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\ClientVelibConsole\obj\Debug\ClientVelibConsole.csproj.CoreCompileInputs.cache
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\ClientVelibConsole\obj\Debug\ClientVelibConsole.exe
 D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\ClientVelibConsole\obj\Debug\ClientVelibConsole.pdb
+D:\Documents\S8\WebServices\RestAndSoapWS\SOAPVelib\ClientVelibConsole\obj\Debug\ClientVelibConsole.csprojResolveAssemblyReference.cache

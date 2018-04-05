@@ -32,6 +32,12 @@ namespace ClientVelibConsole.SOAPVelibReference {
         private string cityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double latitudeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double longitudeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string nameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -84,6 +90,32 @@ namespace ClientVelibConsole.SOAPVelibReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public double latitude {
+            get {
+                return this.latitudeField;
+            }
+            set {
+                if ((this.latitudeField.Equals(value) != true)) {
+                    this.latitudeField = value;
+                    this.RaisePropertyChanged("latitude");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double longitude {
+            get {
+                return this.longitudeField;
+            }
+            set {
+                if ((this.longitudeField.Equals(value) != true)) {
+                    this.longitudeField = value;
+                    this.RaisePropertyChanged("longitude");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string name {
             get {
                 return this.nameField;
@@ -107,7 +139,7 @@ namespace ClientVelibConsole.SOAPVelibReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SOAPVelibReference.IVelibOperations")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SOAPVelibReference.IVelibOperations", CallbackContract=typeof(ClientVelibConsole.SOAPVelibReference.IVelibOperationsCallback))]
     public interface IVelibOperations {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibOperations/GetStations", ReplyAction="http://tempuri.org/IVelibOperations/GetStationsResponse")]
@@ -123,10 +155,32 @@ namespace ClientVelibConsole.SOAPVelibReference {
         System.Threading.Tasks.Task<string[]> GetContractsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibOperations/GetStationData", ReplyAction="http://tempuri.org/IVelibOperations/GetStationDataResponse")]
-        ClientVelibConsole.SOAPVelibReference.Station GetStationData(string city, string station);
+        void GetStationData(string city, string station);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibOperations/GetStationData", ReplyAction="http://tempuri.org/IVelibOperations/GetStationDataResponse")]
-        System.Threading.Tasks.Task<ClientVelibConsole.SOAPVelibReference.Station> GetStationDataAsync(string city, string station);
+        System.Threading.Tasks.Task GetStationDataAsync(string city, string station);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibOperations/SubscribeGetStationDataEvent", ReplyAction="http://tempuri.org/IVelibOperations/SubscribeGetStationDataEventResponse")]
+        void SubscribeGetStationDataEvent();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibOperations/SubscribeGetStationDataEvent", ReplyAction="http://tempuri.org/IVelibOperations/SubscribeGetStationDataEventResponse")]
+        System.Threading.Tasks.Task SubscribeGetStationDataEventAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibOperations/SubscribeGetStationDataEventFinished", ReplyAction="http://tempuri.org/IVelibOperations/SubscribeGetStationDataEventFinishedResponse")]
+        void SubscribeGetStationDataEventFinished();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVelibOperations/SubscribeGetStationDataEventFinished", ReplyAction="http://tempuri.org/IVelibOperations/SubscribeGetStationDataEventFinishedResponse")]
+        System.Threading.Tasks.Task SubscribeGetStationDataEventFinishedAsync();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IVelibOperationsCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IVelibOperations/GotStationData")]
+        void GotStationData(string city, string station, ClientVelibConsole.SOAPVelibReference.Station result);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IVelibOperations/StationDataRetrieved")]
+        void StationDataRetrieved();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -135,25 +189,26 @@ namespace ClientVelibConsole.SOAPVelibReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class VelibOperationsClient : System.ServiceModel.ClientBase<ClientVelibConsole.SOAPVelibReference.IVelibOperations>, ClientVelibConsole.SOAPVelibReference.IVelibOperations {
+    public partial class VelibOperationsClient : System.ServiceModel.DuplexClientBase<ClientVelibConsole.SOAPVelibReference.IVelibOperations>, ClientVelibConsole.SOAPVelibReference.IVelibOperations {
         
-        public VelibOperationsClient() {
+        public VelibOperationsClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public VelibOperationsClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public VelibOperationsClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public VelibOperationsClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public VelibOperationsClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public VelibOperationsClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public VelibOperationsClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public VelibOperationsClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public VelibOperationsClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
         public string[] GetStations(string city) {
@@ -172,12 +227,28 @@ namespace ClientVelibConsole.SOAPVelibReference {
             return base.Channel.GetContractsAsync();
         }
         
-        public ClientVelibConsole.SOAPVelibReference.Station GetStationData(string city, string station) {
-            return base.Channel.GetStationData(city, station);
+        public void GetStationData(string city, string station) {
+            base.Channel.GetStationData(city, station);
         }
         
-        public System.Threading.Tasks.Task<ClientVelibConsole.SOAPVelibReference.Station> GetStationDataAsync(string city, string station) {
+        public System.Threading.Tasks.Task GetStationDataAsync(string city, string station) {
             return base.Channel.GetStationDataAsync(city, station);
+        }
+        
+        public void SubscribeGetStationDataEvent() {
+            base.Channel.SubscribeGetStationDataEvent();
+        }
+        
+        public System.Threading.Tasks.Task SubscribeGetStationDataEventAsync() {
+            return base.Channel.SubscribeGetStationDataEventAsync();
+        }
+        
+        public void SubscribeGetStationDataEventFinished() {
+            base.Channel.SubscribeGetStationDataEventFinished();
+        }
+        
+        public System.Threading.Tasks.Task SubscribeGetStationDataEventFinishedAsync() {
+            return base.Channel.SubscribeGetStationDataEventFinishedAsync();
         }
     }
 }

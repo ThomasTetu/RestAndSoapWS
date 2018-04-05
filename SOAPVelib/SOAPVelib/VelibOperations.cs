@@ -6,13 +6,18 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SOAPVelib
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class VelibOperations : IVelibOperations
     {
+        static Action<string, string , Station> m_Event1 = delegate { };
+        static Action m_Event2 = delegate { };
+
         private static string BASE_URI = "https://api.jcdecaux.com/vls/v1/";
         private static string API_KEY = "&apiKey=54891361888ee7897e3778b99473f96067b77ad7";
         private static StationCache cache = new StationCache();
@@ -46,14 +51,15 @@ namespace SOAPVelib
             return null;
         }
 
-        public Station GetStationData(string city, string station)
+        public void GetStationData(string city, string station)
         {
             foreach(DataRow row in cache.GetRows())
             {
                 if (row["Name"].ToString().Equals(city) && (station != "" && row["StationName"].ToString().Contains(station))){
                     if (((DateTime) row["AddedDate"]).AddMinutes(timeOut).CompareTo(DateTime.Now) >= 0)
                     {
-                        return (Station)row["Station"];
+                        m_Event1(city, row["StationName"].ToString(), (Station)row["Station"]);
+                        m_Event2();
                     }
                     else
                     {
@@ -66,7 +72,8 @@ namespace SOAPVelib
             Station stationObject = ParseStationData(GetContractDataFromServer(city), station);
             cache.AddRow(stationObject);
 
-            return stationObject;
+            m_Event1(city, stationObject.name, stationObject);
+            m_Event2();
         }
 
         private IList<string> ParseContracts(string data)
@@ -205,6 +212,20 @@ namespace SOAPVelib
             string data = await getStationData;
 
             return ParseStationData(data, station);
+        }
+
+        public void SubscribeGetStationDataEvent()
+        {
+            IVelibOperationsEvents subscriber =
+           OperationContext.Current.GetCallbackChannel<IVelibOperationsEvents>();
+            m_Event1 += subscriber.GotStationData;
+        }
+
+        public void SubscribeGetStationDataEventFinished()
+        {
+            IVelibOperationsEvents subscriber =
+            OperationContext.Current.GetCallbackChannel<IVelibOperationsEvents>();
+            m_Event2 += subscriber.StationDataRetrieved;
         }
     }
 }

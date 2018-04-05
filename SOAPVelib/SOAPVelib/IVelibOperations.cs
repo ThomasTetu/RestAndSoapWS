@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SOAPVelib
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(IVelibOperationsEvents))]
     public interface IVelibOperations
     {
         [OperationContract]
@@ -18,6 +18,12 @@ namespace SOAPVelib
         IList<String> GetContracts();
 
         [OperationContract]
-        Station GetStationData(String city,String station);
+        void GetStationData(String city,String station);
+
+        [OperationContract]
+        void SubscribeGetStationDataEvent();
+
+        [OperationContract]
+        void SubscribeGetStationDataEventFinished();
     }
 }
