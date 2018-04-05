@@ -21,6 +21,8 @@ namespace ClientVelibConsole
             InstanceContext iCntxt = new InstanceContext(objsink);
 
             SOAPVelibReference.VelibOperationsClient client = new SOAPVelibReference.VelibOperationsClient(iCntxt);
+            client.SubscribeGetStationDataEvent();
+            client.SubscribeGetStationDataEventFinished();
             while (true)
             {
                 string city = null;
@@ -57,8 +59,7 @@ namespace ClientVelibConsole
                         station = arguments[2];
                         if (city != null && station != null)
                         {
-                            client.SubscribeGetStationDataEvent();
-                            client.SubscribeGetStationDataEventFinished();
+                            
                             client.GetStationData(city, station);
                         }
                         break;
