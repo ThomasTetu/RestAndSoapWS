@@ -7,6 +7,10 @@ Le projet est divisé en 2.
 * Une solution contenant l'IWS SOAP et le client console, utilisante cet IWS.
 * Une solution conteant le client GUI, appelant les méthodes asynchrone de l'IWS.
 
+On a l'architecture suivante :
+
+![Archi](Doc/Archi.jpg)
+
 Il est impératif de lancer l'IWS antérieurement au lancement des clients.
 Le lancement du client console se fait dans la solution contenant l'IWS.
 Le lancement du client GUI se fait à l'extérieur, dans sa propre solution, sur visual studio.
